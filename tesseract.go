@@ -93,6 +93,7 @@ func (handle *BaseAPI) GetAltoText(pageNumber int32) (ret string) {
 	_handle := (*C.TessBaseAPI)(unsafe.Pointer(handle))
 	_pageNumber := C.int(pageNumber)
 	_ret := C.TessBaseAPIGetAltoText(_handle, _pageNumber)
+	defer C.free(unsafe.Pointer(_ret))
 	ret = C.GoString(_ret)
 	return
 }
@@ -121,6 +122,7 @@ func (handle *BaseAPI) GetBoxText(pageNumber int32) (ret string) {
 	_handle := (*C.TessBaseAPI)(unsafe.Pointer(handle))
 	_pageNumber := C.int(pageNumber)
 	_ret := C.TessBaseAPIGetBoxText(_handle, _pageNumber)
+	defer C.free(unsafe.Pointer(_ret))
 	ret = C.GoString(_ret)
 	return
 }
@@ -174,6 +176,7 @@ func (handle *BaseAPI) GetConnectedComponents() (cc *[0]byte, ret *[0]byte) {
 func (handle *BaseAPI) GetDatapath() (ret string) {
 	_handle := (*C.TessBaseAPI)(unsafe.Pointer(handle))
 	_ret := C.TessBaseAPIGetDatapath(_handle)
+	defer C.free(unsafe.Pointer(_ret))
 	ret = C.GoString(_ret)
 	return
 }
@@ -194,6 +197,7 @@ func (handle *BaseAPI) GetHOCRText(pageNumber int32) (ret string) {
 	_handle := (*C.TessBaseAPI)(unsafe.Pointer(handle))
 	_pageNumber := C.int(pageNumber)
 	_ret := C.TessBaseAPIGetHOCRText(_handle, _pageNumber)
+	defer C.free(unsafe.Pointer(_ret))
 	ret = C.GoString(_ret)
 	return
 }
@@ -202,6 +206,7 @@ func (handle *BaseAPI) GetHOCRText(pageNumber int32) (ret string) {
 func (handle *BaseAPI) GetInitLanguagesAsString() (ret string) {
 	_handle := (*C.TessBaseAPI)(unsafe.Pointer(handle))
 	_ret := C.TessBaseAPIGetInitLanguagesAsString(_handle)
+	defer C.free(unsafe.Pointer(_ret))
 	ret = C.GoString(_ret)
 	return
 }
@@ -218,6 +223,7 @@ func (handle *BaseAPI) GetInputImage() (ret *[0]byte) {
 func (handle *BaseAPI) GetInputName() (ret string) {
 	_handle := (*C.TessBaseAPI)(unsafe.Pointer(handle))
 	_ret := C.TessBaseAPIGetInputName(_handle)
+	defer C.free(unsafe.Pointer(_ret))
 	ret = C.GoString(_ret)
 	return
 }
@@ -246,6 +252,7 @@ func (handle *BaseAPI) GetLSTMBoxText(pageNumber int32) (ret string) {
 	_handle := (*C.TessBaseAPI)(unsafe.Pointer(handle))
 	_pageNumber := C.int(pageNumber)
 	_ret := C.TessBaseAPIGetLSTMBoxText(_handle, _pageNumber)
+	defer C.free(unsafe.Pointer(_ret))
 	ret = C.GoString(_ret)
 	return
 }
@@ -306,6 +313,7 @@ func (handle *BaseAPI) GetStringVariable(name string) (ret string) {
 	_name := C.CString(name)
 	defer C.free(unsafe.Pointer(_name))
 	_ret := C.TessBaseAPIGetStringVariable(_handle, _name)
+	defer C.free(unsafe.Pointer(_ret))
 	ret = C.GoString(_ret)
 	return
 }
@@ -377,6 +385,7 @@ func (handle *BaseAPI) GetTsvText(pageNumber int32) (ret string) {
 	_handle := (*C.TessBaseAPI)(unsafe.Pointer(handle))
 	_pageNumber := C.int(pageNumber)
 	_ret := C.TessBaseAPIGetTsvText(_handle, _pageNumber)
+	defer C.free(unsafe.Pointer(_ret))
 	ret = C.GoString(_ret)
 	return
 }
@@ -385,6 +394,7 @@ func (handle *BaseAPI) GetTsvText(pageNumber int32) (ret string) {
 func (handle *BaseAPI) GetUNLVText() (ret string) {
 	_handle := (*C.TessBaseAPI)(unsafe.Pointer(handle))
 	_ret := C.TessBaseAPIGetUNLVText(_handle)
+	defer C.free(unsafe.Pointer(_ret))
 	ret = C.GoString(_ret)
 	return
 }
@@ -393,6 +403,7 @@ func (handle *BaseAPI) GetUNLVText() (ret string) {
 func (handle *BaseAPI) GetUTF8Text() (ret string) {
 	_handle := (*C.TessBaseAPI)(unsafe.Pointer(handle))
 	_ret := C.TessBaseAPIGetUTF8Text(_handle)
+	defer C.free(unsafe.Pointer(_ret))
 	ret = C.GoString(_ret)
 	return
 }
@@ -402,6 +413,7 @@ func (handle *BaseAPI) GetUnichar(unicharId int32) (ret string) {
 	_handle := (*C.TessBaseAPI)(unsafe.Pointer(handle))
 	_unicharId := C.int(unicharId)
 	_ret := C.TessBaseAPIGetUnichar(_handle, _unicharId)
+	defer C.free(unsafe.Pointer(_ret))
 	ret = C.GoString(_ret)
 	return
 }
@@ -411,6 +423,7 @@ func (handle *BaseAPI) GetWordStrBoxText(pageNumber int32) (ret string) {
 	_handle := (*C.TessBaseAPI)(unsafe.Pointer(handle))
 	_pageNumber := C.int(pageNumber)
 	_ret := C.TessBaseAPIGetWordStrBoxText(_handle, _pageNumber)
+	defer C.free(unsafe.Pointer(_ret))
 	ret = C.GoString(_ret)
 	return
 }
@@ -609,6 +622,7 @@ func (handle *BaseAPI) Rect(imagedata *byte, bytesPerPixel int32, bytesPerLine i
 	_width := C.int(width)
 	_height := C.int(height)
 	_ret := C.TessBaseAPIRect(_handle, _imagedata, _bytesPerPixel, _bytesPerLine, _left, _top, _width, _height)
+	defer C.free(unsafe.Pointer(_ret))
 	ret = C.GoString(_ret)
 	return
 }
@@ -745,6 +759,7 @@ func (handle *ChoiceIterator) Delete() {
 func (handle *ChoiceIterator) GetUTF8Text() (ret string) {
 	_handle := (*C.TessChoiceIterator)(unsafe.Pointer(handle))
 	_ret := C.TessChoiceIteratorGetUTF8Text(_handle)
+	defer C.free(unsafe.Pointer(_ret))
 	ret = C.GoString(_ret)
 	return
 }
@@ -968,6 +983,7 @@ func (handle *ResultIterator) GetUTF8Text(level PageIteratorLevel) (ret string) 
 	_handle := (*C.TessResultIterator)(unsafe.Pointer(handle))
 	_level := *(*C.TessPageIteratorLevel)(unsafe.Pointer(&level))
 	_ret := C.TessResultIteratorGetUTF8Text(_handle, _level)
+	defer C.free(unsafe.Pointer(_ret))
 	ret = C.GoString(_ret)
 	return
 }
@@ -1017,6 +1033,7 @@ func (handle *ResultIterator) WordFontAttributes() (isBold int32, isItalic int32
 	_pointsize := (*C.int)(unsafe.Pointer(&pointsize))
 	_fontId := (*C.int)(unsafe.Pointer(&fontId))
 	_ret := C.TessResultIteratorWordFontAttributes(_handle, _isBold, _isItalic, _isUnderlined, _isMonospace, _isSerif, _isSmallcaps, _pointsize, _fontId)
+	defer C.free(unsafe.Pointer(_ret))
 	ret = C.GoString(_ret)
 	return
 }
@@ -1086,6 +1103,7 @@ func (renderer *ResultRenderer) EndDocument() (ret bool) {
 func (renderer *ResultRenderer) Extention() (ret string) {
 	_renderer := (*C.TessResultRenderer)(unsafe.Pointer(renderer))
 	_ret := C.TessResultRendererExtention(_renderer)
+	defer C.free(unsafe.Pointer(_ret))
 	ret = C.GoString(_ret)
 	return
 }
@@ -1117,6 +1135,7 @@ func (renderer *ResultRenderer) Next() (ret *ResultRenderer) {
 func (renderer *ResultRenderer) Title() (ret string) {
 	_renderer := (*C.TessResultRenderer)(unsafe.Pointer(renderer))
 	_ret := C.TessResultRendererTitle(_renderer)
+	defer C.free(unsafe.Pointer(_ret))
 	ret = C.GoString(_ret)
 	return
 }
