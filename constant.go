@@ -70,4 +70,3 @@ const (
 	// RIL_SYMBOL - Symbol/character within a word.
 	RIL_SYMBOL
 )
-

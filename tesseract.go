@@ -20,6 +20,7 @@ import (
 type BaseAPI struct {
 }
 
+/* LEGACY
 // TessBaseAPIAdaptToWordStr
 func (handle *BaseAPI) AdaptToWordStr(mode PageSegMode, wordstr string) (ret bool) {
 	_handle := (*C.TessBaseAPI)(unsafe.Pointer(handle))
@@ -30,6 +31,7 @@ func (handle *BaseAPI) AdaptToWordStr(mode PageSegMode, wordstr string) (ret boo
 	ret = bool(_ret == 1)
 	return
 }
+*/
 
 func (handle *BaseAPI) AllWordConfidences() (ret *int32) {
 	_handle := (*C.TessBaseAPI)(unsafe.Pointer(handle))
@@ -52,11 +54,13 @@ func (handle *BaseAPI) Clear() {
 	C.TessBaseAPIClear(_handle)
 }
 
+/* LEGACY?
 // TessBaseAPIClearAdaptiveClassifier
 func (handle *BaseAPI) ClearAdaptiveClassifier() {
 	_handle := (*C.TessBaseAPI)(unsafe.Pointer(handle))
 	C.TessBaseAPIClearAdaptiveClassifier(_handle)
 }
+*/
 
 // TessBaseAPIClearPersistentCache
 func (handle *BaseAPI) ClearPersistentCache() {
@@ -70,6 +74,7 @@ func (handle *BaseAPI) Delete() {
 	C.TessBaseAPIDelete(_handle)
 }
 
+/* LEGACY
 // TessBaseAPIDetectOrientationScript
 func (handle *BaseAPI) DetectOrientationScript() (orientDeg int32, orientConf float32, scriptName *int8, scriptConf float32, ret bool) {
 	_handle := (*C.TessBaseAPI)(unsafe.Pointer(handle))
@@ -81,6 +86,7 @@ func (handle *BaseAPI) DetectOrientationScript() (orientDeg int32, orientConf fl
 	ret = bool(_ret == 1)
 	return
 }
+*/
 
 // TessBaseAPIEnd
 func (handle *BaseAPI) End() {
@@ -1345,10 +1351,10 @@ func (handle *BaseAPI) SetImageBytes(bytes []byte) (ret *C.Pix) {
 	_handle := (*C.TessBaseAPI)(unsafe.Pointer(handle))
 	_pix := C.pixReadMem((*C.uchar)(unsafe.Pointer(&bytes[0])), C.ulong(len(bytes)))
 	C.TessBaseAPISetImage2(_handle, _pix)
-        return _pix
+	return _pix
 }
 
 // pixFreeData
 func FreeImageBytes(pix *C.Pix) {
-        C.pixFreeData(pix)
+	C.pixFreeData(pix)
 }
