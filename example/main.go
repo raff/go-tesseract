@@ -17,8 +17,7 @@ func main() {
 
 	tess := tesseract.BaseAPICreate()
 	defer func() {
-		tess.Clear()
-		tess.End()
+		tess.End()  // relase Tesseract allocated data
 	}()
 
 	if ret := tess.Init3("", "eng"); ret != 0 {
@@ -33,5 +32,6 @@ func main() {
 		fmt.Println(text)
 	}
 
-	tesseract.FreeImageBytes(pbytes)
+	tesseract.FreeImageBytes(pbytes)    // release image data (pix converted from imagebytes)
+        tesseract.Clear()                   // release data allocated for OCR
 }
