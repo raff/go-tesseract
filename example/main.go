@@ -33,5 +33,5 @@ func main() {
 	}
 
 	tesseract.FreeImageBytes(pbytes)    // release image data (pix converted from imagebytes)
-        tesseract.Clear()                   // release data allocated for OCR
+        tess.Clear()                   // release data allocated for OCR
 }
