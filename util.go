@@ -5,6 +5,11 @@ import (
 	"io/ioutil"
 )
 
+var (
+	TextPSM = PSM_SINGLE_COLUMN
+	TextOEM = OEM_LSTM_ONLY
+)
+
 // TextFromFile extract text from an image file
 func TextFromFile(imagefile string) (string, error) {
 	imagebytes, err := ioutil.ReadFile(imagefile)
@@ -22,9 +27,11 @@ func TextFromBytes(imagebytes []byte) (string, error) {
 		tess.End() // relase Tesseract allocated data
 	}()
 
-	if ret := tess.Init3("", "eng"); ret != 0 {
+	if ret := tess.Init2("", "eng", TextOEM); ret != 0 {
 		return "", fmt.Errorf("tesseract init: %v", ret)
 	}
+
+	tess.SetPageSegMode(TextPSM)
 
 	// imagebytes should be a byte buffer
 	// containing an image in a format supported by leptonica (i.e. png)
