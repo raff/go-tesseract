@@ -6,8 +6,9 @@ import (
 )
 
 var (
-	TextPSM = PSM_SINGLE_COLUMN
-	TextOEM = OEM_LSTM_ONLY
+	TextPSM       = PSM_SINGLE_COLUMN
+	TextOEM       = OEM_LSTM_ONLY
+	TextVariables = map[string]string{}
 )
 
 // TextFromFile extract text from an image file
@@ -32,6 +33,10 @@ func TextFromBytes(imagebytes []byte) (string, error) {
 	}
 
 	tess.SetPageSegMode(TextPSM)
+
+	for k, v := range TextVariables {
+		tess.SetVariable(k, v)
+	}
 
 	// imagebytes should be a byte buffer
 	// containing an image in a format supported by leptonica (i.e. png)
