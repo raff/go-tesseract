@@ -4,7 +4,7 @@ package tesseract
 #include <leptonica/allheaders.h>
 #include <tesseract/capi.h>
 #include <stdlib.h>
-#cgo LDFLAGS: -llept -ltesseract
+#cgo LDFLAGS: -lleptonica -ltesseract
 
 typedef int Bool;
 typedef struct Pix Pix;
